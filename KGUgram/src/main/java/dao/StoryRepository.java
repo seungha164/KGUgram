@@ -46,6 +46,32 @@ public class StoryRepository {	// UserDAO
 		return -1;
 	}
 	// 나의 리스트 가져오기
+		public Story getStory(String s_id){
+			String sql = "select * from story where s_id=? ORDER BY s_id DESC";
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, s_id);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					Story story = new Story();
+					story.setS_id(rs.getInt(1));
+					story.setContent(rs.getString(2));
+					story.setLatitude(rs.getDouble(3));
+					story.setLongitude(rs.getDouble(4));
+					story.setImg_name(rs.getString(5));
+					story.setIs_anonymous(rs.getBoolean(6));
+					story.setWriter_id(rs.getString(7));
+					story.setDate(rs.getTimestamp(8));
+				
+					return story;	
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+	// 나의 리스트 가져오기
 	public List<Story> getMyList(String myID){
 		String sql = "select * from story where writer_id=? ORDER BY s_id DESC";
 		ArrayList<Story> llist = new ArrayList<>();
@@ -56,15 +82,13 @@ public class StoryRepository {	// UserDAO
 			while(rs.next()) {
 				Story story = new Story();
 				story.setS_id(rs.getInt(1));
-				story.setGood(rs.getInt(2));
-				story.setBad(rs.getInt(3));
-				story.setContent(rs.getString(4));
-				story.setLatitude(rs.getDouble(5));
-				story.setLongitude(rs.getDouble(6));
-				story.setImg_name(rs.getString(7));
-				story.setIs_anonymous(rs.getBoolean(8));
-				story.setWriter_id(rs.getString(9));
-				story.setDate(rs.getTimestamp(10));
+				story.setContent(rs.getString(2));
+				story.setLatitude(rs.getDouble(3));
+				story.setLongitude(rs.getDouble(4));
+				story.setImg_name(rs.getString(5));
+				story.setIs_anonymous(rs.getBoolean(6));
+				story.setWriter_id(rs.getString(7));
+				story.setDate(rs.getTimestamp(8));
 			
 				llist.add(story);			
 			}
@@ -89,7 +113,7 @@ public class StoryRepository {	// UserDAO
 	}
 	// 해당 스토리 업데이트
 		public int updateStory(Map<String,Object> params) {
-			String sql = "update story set (content,is_anonymous,latitude,longitude) values (?,?,?,?) where writer_id=?";
+			String sql = "update story set content=?,is_anonymous=?,latitude=?,longitude=? where s_id=?";
 			try {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, (String) params.get("content"));
@@ -97,40 +121,14 @@ public class StoryRepository {	// UserDAO
 				pstmt.setDouble(3, Double.valueOf((String) params.get("latitude")));
 				pstmt.setDouble(4, Double.valueOf((String) params.get("longitude")));
 				pstmt.setString(5, (String) params.get("s_id"));
-				pstmt.executeLargeUpdate();	
+				pstmt.executeUpdate();	
 				return 1;
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 			return -1;
 		}
-	// 해당 스토리 가져오기
-	public Story getStory(String s_id) {
-			String sql = "select * from story where s_id=?";
-			try {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, s_id);
-				rs = pstmt.executeQuery();		
-				while(rs.next()) {
-					Story story = new Story();
-					story.setS_id(rs.getInt(1));
-					story.setGood(rs.getInt(2));
-					story.setBad(rs.getInt(3));
-					story.setContent(rs.getString(4));
-					story.setLatitude(rs.getDouble(5));
-					story.setLongitude(rs.getDouble(6));
-					story.setImg_name(rs.getString(7));
-					story.setIs_anonymous(rs.getBoolean(8));
-					story.setWriter_id(rs.getString(9));
-					story.setDate(rs.getTimestamp(10));
-				
-					return story;		
-				}
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-			return null;
-		}
+
 	// 모든 리스트 가져오기
 	public List<Story> getList(){
 		String sql = "select * from story  ORDER BY s_id DESC";
@@ -141,15 +139,13 @@ public class StoryRepository {	// UserDAO
 			while(rs.next()) {
 				Story story = new Story();
 				story.setS_id(rs.getInt(1));
-				story.setGood(rs.getInt(2));
-				story.setBad(rs.getInt(3));
-				story.setContent(rs.getString(4));
-				story.setLatitude(rs.getDouble(5));
-				story.setLongitude(rs.getDouble(6));
-				story.setImg_name(rs.getString(7));
-				story.setIs_anonymous(rs.getBoolean(8));
-				story.setWriter_id(rs.getString(9));
-				story.setDate(rs.getTimestamp(10));
+				story.setContent(rs.getString(2));
+				story.setLatitude(rs.getDouble(3));
+				story.setLongitude(rs.getDouble(4));
+				story.setImg_name(rs.getString(5));
+				story.setIs_anonymous(rs.getBoolean(6));
+				story.setWriter_id(rs.getString(7));
+				story.setDate(rs.getTimestamp(8));
 			
 				llist.add(story);			
 			}

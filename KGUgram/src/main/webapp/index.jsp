@@ -134,14 +134,15 @@ String displaytamp(Timestamp storyT){
    			<div class="col">
           		<div class="card shadow-sm">
           			<div style="width:100%;height:250px; display: flex;padding:15px">
-          				<img  onerror="this.src='./resources/assets/img/logo.png';" class="bd-placeholder-img card-img-top" style="width:100%;object-fit: scale-down;" src="./resources/img/<%=storyList.get(i).getImg_name()%>"></img>
+          				<img  onerror="this.src='./resources/assets/img/logo.png';" class="bd-placeholder-img card-img-top" 
+          				style="width:100%;object-fit: scale-down;" src="./resources/img/<%=storyList.get(i).getImg_name()%>"></img>
           			</div>
             		<hr>
             		<div class="card-body">
             			
-            			<p class="card-text"><span style="font-weight:bold; font-size:1.1rem"><% out.print(storyList.get(i).isIs_anonymous() ?"Anoymous":storyList.get(i).getWriter_id());%> </span> <%= storyList.get(i).getContent() %></p>
-              			<div class="d-flex justify-content-between align-items-center">
-              				<div></div>
+            			<p class="card-text"><span style="font-weight:bold; font-size:1.1rem">
+            				<% out.print(storyList.get(i).isIs_anonymous() ?"Anoymous":storyList.get(i).getWriter_id());%> </span> <%= storyList.get(i).getContent() %></p>
+              			<div class="d-flex justify-content-between align-items-center"> 		
                 			<small class="text-muted"><%= displayTimestamp(storyList.get(i).getDate()) %><fmt:message key="<%= displaytamp(storyList.get(i).getDate())%>"/></small>
              			</div>
            			</div>
@@ -156,9 +157,11 @@ String displaytamp(Timestamp storyT){
   </div>
 
 </main>
-
 	<%@include file="footer.jsp" %>
+	
 <script src="./resources/assets/dist/js/bootstrap.bundle.min.js"></script>
+
+
 	<script type="text/javascript">
 
 	window.onload = function(){
@@ -184,9 +187,11 @@ String displaytamp(Timestamp storyT){
 			
 			// 마커에 표시할 인포윈도우를 생성
             var content = `<div style="position: absolute; left: -50px; top: -50px;background-color:#fff;">
-                <div style="width:250px;height:75px;text-align:center;padding:6px;">
-                <p style="text-align:left;margin-left:5px;margin-bottom:5px;color:#D0D0D0;font-size:0.8rem"><%=displayTimestamp(storyList.get(i).getDate())%>
-                <p class="info_title" style="text-align:center;font-size:1rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis"><%=storyList.get(i).getContent().contentEquals("")?"":storyList.get(i).getContent() %>
+                <div style="width:250px;height:80px;text-align:center;padding:6px;">
+                <p style="text-align:left;margin-left:5px;margin-bottom:5px;color:#D0D0D0;font-size:0.8rem">
+                	<%=displayTimestamp(storyList.get(i).getDate())%><%=displaytamp(storyList.get(i).getDate())%></p>
+                <p class="info_title" style="text-align:center;font-size:1rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis"></p>
+                	<%=storyList.get(i).getContent().contentEquals("")?"":storyList.get(i).getContent() %>
             </div>
         </div>`;
 		    var infowindow = new kakao.maps.InfoWindow({
@@ -215,8 +220,7 @@ String displaytamp(Timestamp storyT){
 	}
 		
 
-</script>
-      
+</script>S
   </body>
 </html>
     

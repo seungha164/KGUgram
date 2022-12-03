@@ -33,9 +33,9 @@ map.put("writer_id", (String) session.getAttribute("u_id"));
 // INSTANCE 생성
 StoryRepository storyDAO = new StoryRepository();
 out.println(map);	
-if(storyDAO.write(map)==-1){	
+if(storyDAO.updateStory(map)==-1){	
 	%>
-	<script>	alert("업로드에 실패하였습니다");	
+	<script>	alert("수정 실패하였습니다");	
 				history.back();
 	</script>
 <% 

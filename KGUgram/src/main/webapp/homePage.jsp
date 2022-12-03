@@ -125,8 +125,9 @@ return "seconds";
 			</div>
 		</section>
 	
-		<h4 style="font-family:Humanbumsuk;font-size:1.5rem;margin-left:100px; margin-top: 20px"><fmt:message key="my_story"/></h4>
+		
 		<div class="py-5 container" style="height:100%">
+		<h4 style="font-family:Humanbumsuk;font-size:1.5rem;argin-bottom: 20px"><fmt:message key="my_story"/></h4>
 			<div class="container" style="width:80%">
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
 			<%
