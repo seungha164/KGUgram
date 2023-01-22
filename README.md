@@ -16,3 +16,5 @@
 ### Installation
 - Tomcat server 실행 port를 `8555`로 설정한 뒤 실행 
 (localhost:8555로 들어가야 kakao API를 불러올 수 있음)
+
+[![Video Label](https://img.youtube.com/vi/G18zfRNkwp4/0.jpg)](https://www.youtube.com/watch?v=G18zfRNkwp4)
